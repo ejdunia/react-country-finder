@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Filter from "./components/Filter";
-import Countries from "./components/Countries";
+import ConditionalRender from "./components/ConditionalRender";
+
 
 function App() {
     const [countries, setCountries] = useState([]);
-    const [filter, setNewFilter] = useState("");
+    const [filter, setFilter] = useState("");
     const [showAll, setShowAll] = useState(countries);
 
     const handleFilterChange = (value) => {
-        setNewFilter(value);
+        setFilter(value);
         const filteredCountries = countries.filter((country) =>
             country?.name?.common.toLowerCase().includes(value.toLowerCase())
         );
@@ -25,15 +26,19 @@ function App() {
             console.log(err);
         }
     };
+
     useEffect(() => {
         getCountries();
     }, []);
 
     return (
         <div>
-            <Filter onChange={(e) => handleFilterChange(e.target.value)} value={filter} />{" "}
-            <p>country list</p>
-            <Countries countries={showAll} />
+            <Filter
+                onChange={(e) => handleFilterChange(e.target.value)}
+                value={filter}
+            />{" "}
+            <h2>country list</h2>
+            <ConditionalRender showAll={showAll} />
         </div>
     );
 }

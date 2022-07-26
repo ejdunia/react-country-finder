@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import ConditionalRender from "./components/ConditionalRender";
 
-
 function App() {
     const [countries, setCountries] = useState([]);
     const [filter, setFilter] = useState("");

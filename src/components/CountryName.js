@@ -1,4 +1,5 @@
-const CountryName = ({ country }) => {
-    return <p>{country.name.common}</p>;
-};
+// import FlexRowContainer from "./styles/FlexRowContainer.styled";
+
+const CountryName = ({ country }) => <span>{country.name.common}</span>;
+
 export default CountryName;

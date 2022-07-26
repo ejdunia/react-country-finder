@@ -1,5 +1,6 @@
 import Countries from "./Countries";
 import FullCountryInfo from "./FullCountryInfo";
+
 const ConditionalRender = ({ showAll }) => {
     console.log(showAll.length);
     if (showAll.length >= 10) {

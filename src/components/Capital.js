@@ -1,7 +1,7 @@
 const Capital = ({ country }) => (
     <ul>
         {country.capital.map((capital) => (
-            <li>{capital}</li>
+            <li key={capital}>{capital}</li>
         ))}
     </ul>
 );

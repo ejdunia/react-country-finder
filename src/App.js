@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import ConditionalRender from "./components/ConditionalRender";
+// const api_key = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 function App() {
     const [countries, setCountries] = useState([]);
@@ -18,7 +19,7 @@ function App() {
 
     const getCountries = async () => {
         try {
-            const res = await axios.get("https://restcountries.com/v3.1/all");
+            const res = await axios.get(`https://restcountries.com/v3.1/all`);
             setCountries(res.data);
             setShowAll(res.data);
         } catch (err) {
@@ -26,8 +27,11 @@ function App() {
         }
     };
 
+    
+
     useEffect(() => {
         getCountries();
+        // getWeather();
     }, []);
 
     return (

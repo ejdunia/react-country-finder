@@ -6,6 +6,8 @@ import Languages from "./Languages";
 import Capital from "./Capital";
 import Flag from "./Flag";
 import Area from "./Area";
+import Card from "./styles/Card.styled";
+
 const api_key = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 const CountryDetails = ({ country }) => {
@@ -33,33 +35,31 @@ const CountryDetails = ({ country }) => {
     };
 
     return (
-        <div>
+        <Card>
             <CountryName key={country.name.common} country={country} />
             <Button text={"show"} onClick={() => showDetails()} />
             {isShown && (
                 <div>
-                    <h2>capital</h2>
+                    <h2>Capital</h2>
                     <Capital country={country} />
                     <p>
-                        latitude: {country.latlng[0]} longitude:
+                        Latitude: {country.latlng[0]}, Longitude:{" "}
                         {country.latlng[1]}
                     </p>
-                    <p>
-                        Area: <Area country={country} />{" "}
-                    </p>
-                    <h2>languages</h2> <Languages country={country} />
+                     <Area country={country} /> <Flag country={country} />
+                    {/* <p></p> */}
+                    <h2>Languages</h2> <Languages country={country} />
                     <h2>Weather </h2>
-                    <p> {weather?.main?.temp} Celcius</p>
-                    <p> {weather?.weather[0]?.main} </p>
-                    <p>wind speed {weather?.wind?.speed}m/s</p>
+                    <p>Temprature: {weather?.main?.temp} Celcius</p>
+                    <p>Feels: {weather?.weather[0]?.main} </p>
                     <img
                         src={`http://openweathermap.org/img/wn/${weather?.weather[0]?.icon}@2x.png`}
                         alt={"weather icon"}
                     />
-                    <Flag country={country} />
+                    <p>wind speed {weather?.wind?.speed}m/s</p>
                 </div>
             )}
-        </div>
+        </Card>
     );
 };
 

@@ -1,2 +1,2 @@
-const Area = ({ country }) => <span>{country.area}</span>;
+const Area = ({ country }) => <span>Area: {country.area}</span>;
 export default Area;

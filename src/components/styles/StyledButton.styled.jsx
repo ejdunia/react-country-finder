@@ -8,14 +8,12 @@ const StyledButton = styled.button`
     color: #ffffff;
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
     height: 40px;
     line-height: 20px;
     list-style: none;
     margin: 0;
     outline: none;
-    padding: 10px 16px;
+    padding: 8px 10px;
     position: relative;
     text-align: center;
     text-decoration: none;

@@ -1,13 +1,23 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./components/theme";
+import { GlobalStyles } from "./components/global";
+import Navbar from "./components/Navbar";
 import Filter from "./components/Filter";
 import ConditionalRender from "./components/ConditionalRender";
+import CheckboxToggle from "./components/CheckboxToggle";
 // const api_key = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 function App() {
     const [countries, setCountries] = useState([]);
     const [filter, setFilter] = useState("");
     const [showAll, setShowAll] = useState(countries);
+    const [isDarkMode, setDarkMode] = useState(false);
+
+    const handleToggle = () => {
+        setDarkMode(!isDarkMode);
+    };
 
     const handleFilterChange = (value) => {
         setFilter(value);
@@ -27,22 +37,21 @@ function App() {
         }
     };
 
-    
-
     useEffect(() => {
         getCountries();
-        // getWeather();
     }, []);
 
     return (
-        <div>
+        <ThemeProvider theme={isDarkMode ? lightTheme : darkTheme}>
+            <GlobalStyles />
+            <Navbar>navbar</Navbar>
+            <CheckboxToggle onChange={() => handleToggle()} />
             <Filter
                 onChange={(e) => handleFilterChange(e.target.value)}
                 value={filter}
             />{" "}
-            <h2>country list</h2>
             <ConditionalRender showAll={showAll} />
-        </div>
+        </ThemeProvider>
     );
 }
 
